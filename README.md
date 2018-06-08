@@ -1,6 +1,6 @@
 # SURLS (For Demo)
 
-surls 使用golang编写,实现短域名服务。
+surls 使用golang编写,实现短域名服务。  
 项目基于[go-kit](https://github.com/go-kit/kit)搭建,并集成常用组件。
 
 - [x] 依赖库管理 [glide](https://github.com/Masterminds/glide)
