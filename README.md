@@ -73,12 +73,13 @@ $ go get -u -v github.com/google/pprof
 |       |   ├── mw_endpoint //surls endpoint类型中间件
 |       |   └── mw_svc //surls svc类型中间件
 |       └── svc.go //实现定义的服务
+├── runtime //保存程序运行时数据
+|   ├── pid //服务pid
+|   └── ... //其他运行时数据
 ├── tests //单元测试保存目录
 ├── vendor //依赖库保存目录
 ├── .realize.yaml //实时自动编译配置文件
-├── glide.yaml //依赖库配置文件
-├── pid //项目启动pid记录文件(程序启动时自动生成)
-└── ... //其他配置文件
+└── glide.yaml //依赖库配置文件
 
 ```
 
