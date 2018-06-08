@@ -56,8 +56,8 @@ $ go get -u -v github.com/google/pprof
 ├── bin //go build后bin包
 ├── cli //命令行参数解析
 ├── clients //grpc客户端
-|   ├── count //count服务客户端
-|   └── upper //upper服务客户端
+|   ├── get //get服务客户端
+|   └── set //set服务客户端
 ├── docker //docker镜像构建相关
 ├── global //全局生效 变量&配置
 ├── lib //公共库目录
@@ -97,8 +97,8 @@ $ realize start
 $ go run main.go -h 
 # 验证服务
 # 访问 grpc server
-$ go run clients/upper/client.go -s test
-$ go run clients/count/client.go -s test
+$ go run clients/get/client.go -s test
+$ go run clients/set/client.go -s test
 # 访问 http server
 $ curl 'http://localhost:7071/surls/v1/get?url=http://www.baidu.com'
 $ curl -XPOST -d '{"url":"http://www.baidu.com"}' http://localhost:7071/surls/v1/set
