@@ -82,6 +82,12 @@ $ go get -u -v github.com/google/pprof
 
 ```
 
+## Install
+```bash
+$ cd $GOPATH/src
+$ git clone git@github.com:GxlZ/surls.git
+```
+
 ## Run
 ```bash
 $ cd $GOPATH/src/surls
