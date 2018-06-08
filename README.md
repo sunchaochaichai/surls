@@ -77,7 +77,7 @@ $ go get -u -v github.com/google/pprof
 ├── vendor //依赖库保存目录
 ├── .realize.yaml //实时自动编译配置文件
 ├── glide.yaml //依赖库配置文件
-├── pid //项目启动pid记录文件
+├── pid //项目启动pid记录文件(程序启动时自动生成)
 └── ... //其他配置文件
 
 ```
