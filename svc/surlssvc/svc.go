@@ -27,7 +27,7 @@ func SUrlsSvc() interfaces.SUrlsInf {
 	svc = SUrls{}
 
 	//日志
-	//svc = mw_svc.LoggingMiddleware{global.Logger, svc}
+	svc = mw_svc.LoggingMiddleware{svc}
 
 	//prometheus 中间件
 	fieldKeys := []string{"method", "error"}

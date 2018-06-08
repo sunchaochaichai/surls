@@ -13,13 +13,13 @@ type LoggingMiddleware struct {
 
 func (mw LoggingMiddleware) Set(ctx context.Context, s string) (output string, err error) {
 	defer func(begin time.Time) {
-		logrus.Info(
-			"method", "set",
-			"input", s,
-			"output", output,
-			"err", err,
-			"took", time.Since(begin),
-		)
+		var info logrus.Fields = make(map[string]interface{})
+		info["method"] = "set"
+		info["input"] = s
+		info["output"] = output
+		info["err"] = err
+		info["duration"] = time.Since(begin)
+		logrus.WithFields(info).Info("surls/v1/set")
 	}(time.Now())
 
 	output, err = mw.Next.Set(ctx, s)
@@ -28,13 +28,13 @@ func (mw LoggingMiddleware) Set(ctx context.Context, s string) (output string, e
 
 func (mw LoggingMiddleware) Get(ctx context.Context, s string) (output string, err error) {
 	defer func(begin time.Time) {
-		logrus.Info(
-			"method", "get",
-			"input", s,
-			"output", output,
-			"err", err,
-			"took", time.Since(begin),
-		)
+		var info logrus.Fields = make(map[string]interface{})
+		info["method"] = "get"
+		info["input"] = s
+		info["output"] = output
+		info["err"] = err
+		info["duration"] = time.Since(begin)
+		logrus.WithFields(info).Info("surls/v1/get")
 	}(time.Now())
 
 	output, err = mw.Next.Get(ctx, s)
