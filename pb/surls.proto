@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/api/annotations.proto";
+
+service SUrls {
+    rpc Get (GetReq) returns (GetResp) {
+        option (google.api.http) = {
+            get: "/surls/v1/get"
+        };
+    }
+
+    rpc Set (SetReq) returns (SetResp) {
+        option (google.api.http) = {
+            post: "/surls/v1/set"
+            body: "*"
+        };
+    }
+}
+
+message GetReq {
+    string url = 1;
+}
+
+message GetResp {
+    int32 code = 1;
+    string msg = 2;
+    string data = 3;
+}
+
+message SetReq {
+    string url = 1;
+}
+
+message SetResp {
+    int32 code = 1;
+    string msg = 2;
+    SetRespData data = 3;
+}
+
+message SetRespData {
+    string source_url = 1;
+    string short_url = 2;
+}
