@@ -1,6 +1,6 @@
-# go-kit demo (go1.10.2)
+# SURLS (For Demo)
 
-> demo使用[go-kit](https://github.com/go-kit/kit)搭建，集成常用组件
+> 使用[go-kit](https://github.com/go-kit/kit)搭建，集成常用组件
 - [x] 依赖库管理 [glide](https://github.com/Masterminds/glide)
 - [x] 实时编译 [realize](https://github.com/oxequa/realize)
 - [x] 命令行支持 [cli](https://github.com/urfave/cli)
@@ -16,8 +16,9 @@
 - [x] 服务优雅退出 graceful
 - [x] tests
 - [x] benchmark
+- [ ] zipkin全链路追踪
 
-## 环境依赖
+## 环境依赖 (go1.10.2)
 ```bash
 # docker环境
 $ curl -fsSL https://get.docker.com/ | sh
@@ -194,6 +195,3 @@ $ docker run -d \
 $ open http://127.0.0.1:9090
 ```
 <img src="assets/prometheus.png" />
-
-> TODOS
-- [ ] zipkin全链路追踪
