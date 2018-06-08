@@ -1,6 +1,8 @@
 # SURLS (For Demo)
 
-> 使用[go-kit](https://github.com/go-kit/kit)搭建，集成常用组件
+surls 使用golang编写,实现短域名服务。
+项目基于[go-kit](https://github.com/go-kit/kit)搭建,并集成常用组件。
+
 - [x] 依赖库管理 [glide](https://github.com/Masterminds/glide)
 - [x] 实时编译 [realize](https://github.com/oxequa/realize)
 - [x] 命令行支持 [cli](https://github.com/urfave/cli)
