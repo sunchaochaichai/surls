@@ -13,12 +13,12 @@ type SUrls struct {
 }
 
 func (SUrls) Get(ctx context.Context, s string) (output string, err error) {
-	output = "asdfg"
+	output = s
 	return
 }
 
 func (SUrls) Set(ctx context.Context, s string) (output string, err error) {
-	output = "gfdsa"
+	output = s
 	return
 }
 

@@ -1,9 +1,11 @@
 package tests
 
-import "surls/svc/surlssvc/handlers"
+import (
+	"surls/svc/surlssvc/transports"
+)
 
-var surlsGrpcService *handlers.GrpcService
+var surlsGrpcService *transports.GrpcService
 
 func init() {
-	surlsGrpcService = handlers.NewSUrlsGrpcServer()
+	surlsGrpcService = transports.NewSUrlsGrpcServer()
 }
