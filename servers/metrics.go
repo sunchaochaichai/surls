@@ -5,7 +5,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"surls/cli"
 	"fmt"
-	"surls/global"
+	"log"
 )
 
 func RunMetricsServer() {
@@ -15,21 +15,18 @@ func RunMetricsServer() {
 		promhttp.Handler().ServeHTTP,
 	)
 
-	global.Logger.Log(
-		"transport",
-		"instrumenting",
-		"adapter",
-		"prometheus",
-		"addr",
+	log.Println(
 		fmt.Sprintf(
-			"%s%s",
-			cli.Params.MetricsAddr,
-			cli.Params.MetricsPath,
+			"%s , %s=%s , %s=%s , %s=%s%s ,",
+			"metrics running...",
+			"transport", "instrumenting",
+			"adapter", "prometheus",
+			"addr", cli.Params.MetricsAddr, cli.Params.MetricsPath,
 		),
 	)
 
-	global.Logger.Log(
-		"err",
+	log.Fatalln(
+		"metrics error:",
 		http.ListenAndServe(cli.Params.MetricsAddr, mux),
 	)
 }

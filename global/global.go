@@ -1,12 +1,21 @@
 package global
 
 import (
-	"github.com/go-kit/kit/log"
-	"os"
+	"github.com/go-redis/redis"
+	"github.com/sirupsen/logrus"
 )
 
-var Logger log.Logger
+var Redis *redis.Client
 
 func init() {
-	Logger = log.NewLogfmtLogger(os.Stderr)
+	logrus.SetFormatter(&logrus.TextFormatter{
+		DisableColors:    false,
+		FullTimestamp:    true,
+		TimestampFormat:  "2006-01-02 15:04:05.0000",
+		QuoteEmptyFields: true,
+	})
+
+	LoadConf()
+
+	Redis = NewRedisClient()
 }

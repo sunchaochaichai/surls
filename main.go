@@ -1,9 +1,10 @@
 package main
 
 import (
+	_ "surls/global"
 	"surls/servers"
-	"surls/global"
 	"surls/lib"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -22,5 +23,5 @@ func main() {
 		servers.RunDebug()
 	}()
 
-	global.Logger.Log("done", servers.RunGrpcServer())
+	logrus.Info("done", servers.RunGrpcServer())
 }

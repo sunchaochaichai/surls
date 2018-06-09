@@ -30,7 +30,7 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
-	r, err := c.Set(ctx, &pb.SetReq{Url: "http://www.baidu.com"})
+	r, err := c.Set(ctx, &pb.SetReq{Url: str})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}

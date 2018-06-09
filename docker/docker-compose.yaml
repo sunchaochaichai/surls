@@ -1,0 +1,26 @@
+version: '2'
+services:
+  redis.server:
+    image: redis
+
+  promethrus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090/tcp
+    volumes:
+      - $GOPATH/src/surls/docker/prometheus/data:/prometheus-data
+    command: --config.file=/prometheus-data/prometheus.yml
+
+  surls:
+    image: surls-img
+    ports:
+      - 7070:7070/tcp
+      - 7071:7071/tcp
+      - 7072:7072/tcp
+      - 7073:7073/tcp
+      - 7074:7074/tcp
+    links:
+      - redis.server
+    depends_on:
+      - redis.server
+

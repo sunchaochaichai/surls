@@ -1,9 +1,10 @@
 FROM golang:1.10.2-alpine
 
-COPY go-kit /go/src/go-kit
-COPY go-kit/docker/image_build/entrypoint.sh /
+COPY surls /go/src/surls
+COPY surls/docker/image_build/entrypoint.sh /
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    touch /tmp/block
 
 EXPOSE 7070 7071 7072 7073
 

@@ -1,0 +1,4 @@
+redis:
+  addr: "redis.server:6379"
+  password: ""
+  db: 0

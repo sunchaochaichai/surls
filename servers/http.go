@@ -7,8 +7,8 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"surls/pb"
 	"surls/cli"
-	"os"
-	"surls/global"
+	"log"
+	"fmt"
 )
 
 func RunHttpServer() {
@@ -26,21 +26,21 @@ func RunHttpServer() {
 	)
 
 	if err != nil {
-		global.Logger.Log("err", err)
-		os.Exit(2)
+		log.Fatalln("http server error:", err)
 	}
 
-	global.Logger.Log(
-		"transport",
-		"http",
-		"addr",
-		cli.Params.HttpServAddr,
-		"proxy-grpc",
-		cli.Params.GrpcServAddr,
+	log.Println(
+		fmt.Sprintf(
+			"%s , %s=%s , %s=%s, %s=%s",
+			"http proxy running...",
+			"transport", "http",
+			"addr", cli.Params.HttpServAddr,
+			"grpc proxy", cli.Params.GrpcServAddr,
+		),
 	)
 
-	global.Logger.Log(
-		"err",
+	log.Fatalln(
+		"Http Server Error:",
 		http.ListenAndServe(cli.Params.HttpServAddr, mux),
 	)
 }

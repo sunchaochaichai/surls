@@ -12,6 +12,7 @@ type params struct {
 	DebugAddr    string
 	MetricsAddr  string
 	MetricsPath  string
+	RunMode      string
 }
 
 var Params params
@@ -35,6 +36,8 @@ func init() {
 		Params.DebugAddr = c.String("debug-addr")
 
 		Params.MetricsPath = c.String("metrics-path")
+
+		Params.RunMode = c.String("run-mode")
 
 		return nil
 	}
@@ -74,6 +77,11 @@ func registFlags(app *cli.App) {
 			Name:  "metrics-path",
 			Usage: "prometheus metrics path",
 			Value: "/metrics",
+		},
+		cli.StringFlag{
+			Name:  "run-mode",
+			Usage: "set run mode,support local(for local machine),container (for docker)",
+			Value: "local",
 		},
 	}
 }

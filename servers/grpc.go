@@ -8,17 +8,16 @@ import (
 	"surls/cli"
 	"os/signal"
 	"syscall"
-	"surls/global"
 	"surls/pb"
 	"surls/svc/surlssvc/transports"
+	"log"
 )
 
 func RunGrpcServer() error {
 
 	grpcListener, err := net.Listen("tcp", cli.Params.GrpcServAddr)
 	if err != nil {
-		global.Logger.Log("transport", "gRPC", "during", "Listen", "err", err)
-		os.Exit(1)
+		log.Fatalln("transport=gRPC , err=", err)
 	}
 
 	server := grpc.NewServer(grpc.UnaryInterceptor(kitgrpc.Interceptor))
@@ -33,11 +32,11 @@ func RunGrpcServer() error {
 	go func() {
 		c := make(chan os.Signal)
 		signal.Notify(c, syscall.SIGINT)
-		global.Logger.Log("exit...", <-c)
+		log.Println("grpc server exit...", <-c)
 		server.GracefulStop()
 	}()
 
-	global.Logger.Log("transport", "gRPC", "addr", cli.Params.GrpcServAddr)
-	return server.Serve(grpcListener)
+	log.Println("grpc server running... , transport=gRPC , addr=",cli.Params.GrpcServAddr)
 
+	return server.Serve(grpcListener)
 }

@@ -20,6 +20,7 @@ surls 使用golang编写,实现短域名服务。
 - [x] 服务优雅退出 graceful
 - [x] tests
 - [x] benchmark
+- [x] yaml配置文件支持
 - [ ] zipkin全链路追踪
 
 ## 环境依赖 (go1.10.2)
@@ -58,6 +59,7 @@ $ go get -u -v github.com/google/pprof
 ├── clients //grpc客户端
 |   ├── get //get服务客户端
 |   └── set //set服务客户端
+├── conf //配置文件保存目录
 ├── docker //docker镜像构建相关
 ├── global //全局生效 变量&配置
 ├── lib //公共库目录
@@ -91,6 +93,11 @@ $ git clone git@github.com:GxlZ/surls.git
 
 ## Run
 ```bash
+# run redis server
+$ docker run -d \
+-p 6973:6379 \
+--name redis-local \
+redis
 $ cd $GOPATH/src/surls
 # 自动编译
 $ realize start

@@ -18,4 +18,4 @@ scrape_configs:
     scheme: http
     static_configs:
     - targets:
-      - 127.0.0.1:7072
+      - surls:7072

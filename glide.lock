@@ -1,5 +1,5 @@
-hash: 41aff8969ba6b0dad587fb8bba38a6dd898a9f8eee4b7a0ef90dd478b940a18a
-updated: 2018-06-08T16:50:01.514281+08:00
+hash: 168f5284f47c99e33c5f62e514e38cad7abc39babe16a894dcb2cfc7636aa303
+updated: 2018-06-09T16:10:34.277985+08:00
 imports:
 - name: github.com/afex/hystrix-go
   version: fa1af6a1f4f56e0e50d427fe901cd604d8c6fb8a
@@ -7,20 +7,14 @@ imports:
   - hystrix
   - hystrix/metric_collector
   - hystrix/rolling
-- name: github.com/armon/go-radix
-  version: 1fca145dffbcaa8fe914309b1ec0cfc67500fe61
 - name: github.com/beorn7/perks
   version: 3a771d992973f24aa725d07868b467d1ddfceafb
   subpackages:
   - quantile
-- name: github.com/bgentry/speakeasy
-  version: 4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
 - name: github.com/davecgh/go-spew
   version: 346938d642f2ec3594ed81d874461961cd0faa76
   subpackages:
   - spew
-- name: github.com/fatih/color
-  version: 2d684516a8861da43017284349b7e303e809ac21
 - name: github.com/go-kit/kit
   version: ca4112baa34cb55091301bdc13b1420a122b1b9e
   subpackages:
@@ -29,7 +23,6 @@ imports:
   - metrics
   - metrics/internal/lv
   - metrics/prometheus
-  - tracing/zipkin
   - transport/grpc
   - transport/http
 - name: github.com/go-logfmt/logfmt
@@ -38,6 +31,16 @@ imports:
   version: a1ec82a652ebc7e784d7df887cfb31061aeabbcc
   subpackages:
   - oleutil
+- name: github.com/go-redis/redis
+  version: 83fb42932f6145ce52df09860384a4653d2d332a
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+  - internal/singleflight
+  - internal/util
 - name: github.com/go-stack/stack
   version: 259ab82a6cad3992b4e21ff5cac294ccb06474bc
 - name: github.com/golang/protobuf
@@ -59,51 +62,20 @@ imports:
   - runtime
   - runtime/internal
   - utilities
-- name: github.com/hashicorp/consul
-  version: 9a494b5fb9c86180a5702e29c485df1507a47198
-  subpackages:
-  - logger
-- name: github.com/hashicorp/errwrap
-  version: 7554cd9344cec97297fa6649b055a8c98c2a1e55
-- name: github.com/hashicorp/go-multierror
-  version: b7773ae218740a7be65057fc60b366a49b538a44
-- name: github.com/hashicorp/go-syslog
-  version: 326bf4a7f709d263f964a6a96558676b103f3534
-- name: github.com/hashicorp/logutils
-  version: 0dc08b1671f34c4250ce212759ebd880f743d883
 - name: github.com/kr/logfmt
   version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
-- name: github.com/mattn/go-colorable
-  version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
-- name: github.com/mattn/go-isatty
-  version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/matttproud/golang_protobuf_extensions
   version: c12348ce28de40eed0136aa2b644d0ee0650e56c
   subpackages:
   - pbutil
-- name: github.com/mitchellh/cli
-  version: c48282d14eba4b0817ddef3f832ff8d13851aefd
 - name: github.com/mkevac/debugcharts
   version: d3203a8fa92649b82dc35c214979861de918874a
   subpackages:
   - bindata
 - name: github.com/openzipkin/zipkin-go
   version: f197ec29e729f226d23370ea60f0e49b8f44ccf4
-  subpackages:
-  - idgenerator
-  - model
-  - propagation
-  - propagation/b3
-  - reporter
-  - reporter/http
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
-- name: github.com/posener/complete
-  version: e037c22b2fcfa85e74495388f03892ed194bba76
-  subpackages:
-  - cmd
-  - cmd/install
-  - match
 - name: github.com/prometheus/client_golang
   version: 967789050ba94deca04a5e84cce8ad472ce313c1
   subpackages:
@@ -142,6 +114,10 @@ imports:
   version: cdffdb33acae0e14efff2628f9bae377b597840e
 - name: github.com/urfave/cli
   version: cfb38830724cc34fedffe9a2a29fb54fa9169cd1
+- name: golang.org/x/crypto
+  version: 8ac0e0d97ce45cd83d1d7243c060cb8461dda5e9
+  subpackages:
+  - ssh/terminal
 - name: golang.org/x/net
   version: 1e491301e022f8f977054da4c2d852decd59571f
   subpackages:
@@ -165,7 +141,7 @@ imports:
   - unicode/bidi
   - unicode/norm
 - name: google.golang.org/genproto
-  version: 81158efcc9f219c511e4d3c0d61a0e6e49c01a24
+  version: 32ee49c4dd805befd833990acba36cb75042378c
   subpackages:
   - googleapis/api/annotations
   - googleapis/rpc/status
@@ -195,4 +171,6 @@ imports:
   - status
   - tap
   - transport
+- name: gopkg.in/yaml.v2
+  version: 5420a8b6744d3b0345ab293f6fcba19c978f1183
 testImports: []
