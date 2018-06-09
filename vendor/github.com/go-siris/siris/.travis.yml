@@ -1,0 +1,41 @@
+language: go
+
+os:
+  - linux
+  - osx
+
+go:
+  - go1.9.x
+  - tip
+
+go_import_path: github.com/go-siris/siris
+
+before_install:
+ - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
+ - if [ $TRAVIS_OS_NAME = osx ]; then brew install gnu-sed --with-default-names; fi
+ - chmod +x ./go-test.sh
+
+install:
+  - go get ./...
+# install test dependencies
+  - go get github.com/wadey/gocovmerge
+  - go get golang.org/x/tools/cmd/cover
+  - go get -v github.com/axw/gocov
+  - go install github.com/axw/gocov/gocov
+
+script:
+  - ./go-test.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+matrix:
+  allow_failures:
+    - go: tip
+
+addons:
+  hosts:
+    - go-siris.com
+    - sub.go-siris.com
+    - www.go-siris.com
+    - subdomain.go-siris.com

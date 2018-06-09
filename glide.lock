@@ -1,5 +1,5 @@
-hash: 168f5284f47c99e33c5f62e514e38cad7abc39babe16a894dcb2cfc7636aa303
-updated: 2018-06-09T16:10:34.277985+08:00
+hash: b556932cf86a5dff8dfa0e19bbd96c01a0aa65551b50aa291bab18d33e7a362c
+updated: 2018-06-09T21:39:39.194108+08:00
 imports:
 - name: github.com/afex/hystrix-go
   version: fa1af6a1f4f56e0e50d427fe901cd604d8c6fb8a
@@ -41,6 +41,10 @@ imports:
   - internal/proto
   - internal/singleflight
   - internal/util
+- name: github.com/go-siris/siris
+  version: ae34b711750f69ac98ba4de2e7600b4621144439
+  subpackages:
+  - core/errors
 - name: github.com/go-stack/stack
   version: 259ab82a6cad3992b4e21ff5cac294ccb06474bc
 - name: github.com/golang/protobuf
@@ -62,6 +66,8 @@ imports:
   - runtime
   - runtime/internal
   - utilities
+- name: github.com/joho/godotenv
+  version: a79fa1e548e2c689c241d10173efd51e5d689d5b
 - name: github.com/kr/logfmt
   version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
 - name: github.com/matttproud/golang_protobuf_extensions
@@ -97,6 +103,8 @@ imports:
   - internal/util
   - nfs
   - xfs
+- name: github.com/satori/go.uuid
+  version: f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
 - name: github.com/shirou/gopsutil
   version: bc5d02c9acfb50d18e651edb592eee0ab048c13a
   subpackages:

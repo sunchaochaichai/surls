@@ -5,7 +5,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func NewRedisClient() *redis.Client {
+func newRedisClient() *redis.Client {
 	c := redis.NewClient(&redis.Options{
 		Addr:     Conf.Redis.Addr,
 		Password: Conf.Redis.Password,

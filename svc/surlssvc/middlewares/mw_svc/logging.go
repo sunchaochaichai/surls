@@ -5,6 +5,7 @@ import (
 	"surls/svc/surlssvc/interfaces"
 	"github.com/sirupsen/logrus"
 	"context"
+	"surls/global"
 )
 
 type LoggingMiddleware struct {
@@ -19,7 +20,7 @@ func (mw LoggingMiddleware) Set(ctx context.Context, s string) (entity interface
 		info["output"] = entity
 		info["err"] = err
 		info["duration"] = time.Since(begin)
-		logrus.WithFields(info).Info("surls/v1/set")
+		global.Logger.WithFields(info).Info("surls/v1/set")
 	}(time.Now())
 
 	entity, err = mw.Next.Set(ctx, s)
@@ -34,7 +35,7 @@ func (mw LoggingMiddleware) Get(ctx context.Context, s string) (entity interface
 		info["output"] = entity
 		info["err"] = err
 		info["duration"] = time.Since(begin)
-		logrus.WithFields(info).Info("surls/v1/get")
+		global.Logger.WithFields(info).Info("surls/v1/get")
 	}(time.Now())
 
 	entity, err = mw.Next.Get(ctx, s)

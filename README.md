@@ -78,7 +78,6 @@ $ go get -u -v github.com/google/pprof
 ├── runtime //保存程序运行时数据
 |   ├── pid //服务pid
 |   └── ... //其他运行时数据
-├── tests //单元测试保存目录
 ├── vendor //依赖库保存目录
 ├── .realize.yaml //实时自动编译配置文件
 └── glide.yaml //依赖库配置文件
@@ -134,22 +133,23 @@ $ gox -verbose
 
 ## Test
 ```bash
-$ cd $GOPATH/src/surls/tests
-$ go test -v
------------------------------------------------
-=== RUN   TestSurlsGet
---- PASS: TestSurlsGet (0.00s)
+$ cd $GOPATH/src/surls
+$ go test -v -cover=true ./...
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 === RUN   TestSurlsSet
 --- PASS: TestSurlsSet (0.00s)
+=== RUN   TestSurlsGet
+--- PASS: TestSurlsGet (0.00s)
 PASS
-ok  	surls/tests	0.020s
+coverage: 90.0% of statements
+ok  	surls/svc/surlssvc/transports	(cached)	coverage: 90.0% of statements
 
 ```
 
 ## Benchmark
 ```bash
-$ cd $GOPATH/src/surls/tests
-$ go test -bench=. -benchtime=2s -benchmem -run=none -v
+$ cd $GOPATH/src/surls
+$ go test -v -bench=. -benchtime=2s -benchmem -run=none
 ----------------------------------------------------------------------------------------------------
 goos: darwin
 goarch: amd64

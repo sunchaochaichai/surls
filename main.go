@@ -3,13 +3,14 @@ package main
 import (
 	_ "surls/global"
 	"surls/servers"
-	"surls/lib"
 	"github.com/sirupsen/logrus"
+	"surls/lib"
+	"surls/global"
 )
 
 func main() {
 
-	lib.SetPid("pid")
+	lib.SetPid(global.ProjectRealPath + "/runtime/pid")
 
 	go func() {
 		servers.RunHttpServer()

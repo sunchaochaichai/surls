@@ -1,10 +1,12 @@
 package global
 
 import (
-	"surls/cli"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"log"
+	"os"
+	"github.com/joho/godotenv"
+	"github.com/davecgh/go-spew/spew"
 )
 
 type conf struct {
@@ -25,22 +27,33 @@ const (
 	RUN_MODE_CONTAINER = "container"
 )
 
-func LoadConf() {
-	log.Println("run mode:", cli.Params.RunMode)
+var ProjectRealPath = os.Getenv("GOPATH") + "/src/surls"
+var RuntimeRealPath = ProjectRealPath + "/runtime"
+var LogPath = RuntimeRealPath + "/logs"
+
+func loadConf() {
+
+	if err := godotenv.Load(ProjectRealPath + "/.env"); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	runMode := os.Getenv("RUN_MODE")
+	log.Println("run mode:", runMode)
+
 	var confFile string
-	switch cli.Params.RunMode {
+	switch runMode {
 	case RUN_MODE_LOCAL:
 		confFile = ProjectRealPath + "/conf/local.yaml"
 	case RUN_MODE_CONTAINER:
 		confFile = ProjectRealPath + "/conf/container.yaml"
 	default:
-		log.Fatalln("unsuppoer run mode! use -h get help")
+		log.Fatalln("unsuppoer run mode! supports:[local,container]")
 	}
 
 	conf, _ := ioutil.ReadFile(confFile)
-	err := yaml.Unmarshal(conf, &Conf)
-	if err != nil {
+	if err := yaml.Unmarshal(conf, &Conf); err != nil {
 		log.Fatalln("conf load failed", err)
 	}
 
+	spew.Dump(Conf)
 }
