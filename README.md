@@ -82,6 +82,7 @@ $ go get -u -v github.com/google/pprof
 |   └── ... //其他运行时数据
 ├── vendor //依赖库保存目录
 ├── .realize.yaml //实时自动编译配置文件
+├── .env //项目运行环境变量
 └── glide.yaml //依赖库配置文件
 
 ```
