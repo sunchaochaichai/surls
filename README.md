@@ -103,13 +103,22 @@ $ cd $GOPATH/src/surls
 $ realize start
 # 手动启动
 $ go run main.go -h 
-# 验证服务
+```
+
+## Run By Docker
+```bash
+$ cd $GOPATH/src/surls
+$ docker-compose -f docker/docker-compose.yaml up -d
+```
+
+## Access Service
+```bash
 # 访问 grpc server
 $ go run clients/get/client.go -s test
 $ go run clients/set/client.go -s test
 # 访问 http server
-$ curl 'http://localhost:7071/surls/v1/get?url=http://www.baidu.com'
 $ curl -XPOST -d '{"url":"http://www.baidu.com"}' http://localhost:7071/surls/v1/set
+$ curl 'http://localhost:7071/surls/v1/get?url=bfa89e563d9509fbc5c6503dd50faf2e'
 ```
 
 ## Graceful
@@ -199,6 +208,7 @@ $ open http://localhost:7074
 <img src="assets/debug-pprof.png" />
 
 >Prometheus 数据采集
+`PS:使用docker-compose方式启动，略过prometheus服务启动`
 ```bash
 # 启动prometheus
 $ docker run -d \

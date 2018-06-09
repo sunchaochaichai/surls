@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"log"
+	"github.com/davecgh/go-spew/spew"
 )
 
 type conf struct {
@@ -41,4 +42,6 @@ func LoadConf() {
 	if err != nil {
 		log.Fatalln("conf load failed", err)
 	}
+
+	spew.Dump(Conf)
 }
