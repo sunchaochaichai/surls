@@ -20,7 +20,7 @@ var Params params
 func init() {
 
 	app := cli.NewApp()
-	app.Name = "Demo For go-kit"
+	app.Name = "SUrls"
 	app.Usage = "go-kit 演示项目"
 	app.Version = "v0.1.0"
 

@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"log"
-	"github.com/davecgh/go-spew/spew"
 )
 
 type conf struct {
-	Redis redisConf
+	ProjectRealPath string
+	Redis           redisConf
 }
 
 type redisConf struct {
@@ -30,9 +30,9 @@ func LoadConf() {
 	var confFile string
 	switch cli.Params.RunMode {
 	case RUN_MODE_LOCAL:
-		confFile = "conf/local.yaml"
+		confFile = ProjectRealPath + "/conf/local.yaml"
 	case RUN_MODE_CONTAINER:
-		confFile = "conf/container.yaml"
+		confFile = ProjectRealPath + "/conf/container.yaml"
 	default:
 		log.Fatalln("unsuppoer run mode! use -h get help")
 	}
@@ -43,5 +43,4 @@ func LoadConf() {
 		log.Fatalln("conf load failed", err)
 	}
 
-	spew.Dump(Conf)
 }
