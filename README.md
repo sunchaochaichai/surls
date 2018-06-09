@@ -21,6 +21,7 @@ surls 使用golang编写,实现短域名服务。
 - [x] tests
 - [x] benchmark
 - [x] yaml配置文件支持
+- [x] env配置文件支持
 - [ ] zipkin全链路追踪
 
 ## 环境依赖 (go1.10.2)
@@ -77,6 +78,7 @@ $ go get -u -v github.com/google/pprof
 |       └── svc.go //实现定义的服务
 ├── runtime //保存程序运行时数据
 |   ├── pid //服务pid
+|   ├── logs //日志保存目录
 |   └── ... //其他运行时数据
 ├── vendor //依赖库保存目录
 ├── .realize.yaml //实时自动编译配置文件
