@@ -13,6 +13,11 @@ services:
       - $GOPATH/src/surls/docker/prometheus/data:/prometheus-data
     command: --config.file=/prometheus-data/prometheus.yml
 
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411/tcp
+
   surls:
     image: golang:1.10.2-alpine
     ports:
@@ -33,5 +38,6 @@ services:
       - |
         sleep 1 && \
         cd /go/src/surls && \
-        ./bin/surls_linux_amd64 --run-mode container
+        echo "RUN_MODE: container" > .env && \
+        ./bin/surls_linux_amd64
 

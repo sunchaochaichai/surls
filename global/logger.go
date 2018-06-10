@@ -5,9 +5,23 @@ import (
 	"os"
 )
 
-func newLogger() *logrus.Logger {
-	logger := logrus.New()
-	logger.Formatter = &logrus.TextFormatter{
+type Logger struct {
+	*logrus.Logger
+	Fields logrus.Fields
+}
+
+func (this Logger) Log(keyvals ...interface{}) error {
+	this.Logger.WithFields(this.Fields).Info(keyvals)
+	return nil
+}
+
+func newLogger() Logger {
+
+	l := Logger{
+		logrus.New(),
+		make(logrus.Fields),
+	}
+	l.Formatter = &logrus.TextFormatter{
 		DisableColors:    false,
 		FullTimestamp:    true,
 		TimestampFormat:  "2006-01-02 15:04:05.0000",
@@ -23,7 +37,7 @@ func newLogger() *logrus.Logger {
 		logrus.Fatal("log file create failed.", err)
 	}
 
-	logger.Out = logFile
+	l.Out = logFile
 
-	return logger
+	return l
 }

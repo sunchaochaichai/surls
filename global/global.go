@@ -2,18 +2,17 @@ package global
 
 import (
 	"github.com/go-redis/redis"
-	"github.com/sirupsen/logrus"
 )
 
 var Redis *redis.Client
 
-var Logger *logrus.Logger
+var Log Logger
 
 func init() {
 
 	loadConf()
 
-	Logger = newLogger()
+	Log = newLogger()
 
 	Redis = newRedisClient()
 }

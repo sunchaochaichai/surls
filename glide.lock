@@ -1,5 +1,5 @@
-hash: b556932cf86a5dff8dfa0e19bbd96c01a0aa65551b50aa291bab18d33e7a362c
-updated: 2018-06-09T21:39:39.194108+08:00
+hash: 28a8590dea6e4ecdef66d04cbf4370dc94ce37837ad58bb81e11e8a4b588db21
+updated: 2018-06-10T12:27:08.148797+08:00
 imports:
 - name: github.com/afex/hystrix-go
   version: fa1af6a1f4f56e0e50d427fe901cd604d8c6fb8a
@@ -78,6 +78,8 @@ imports:
   version: d3203a8fa92649b82dc35c214979861de918874a
   subpackages:
   - bindata
+- name: github.com/opentracing/opentracing-go
+  version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
 - name: github.com/openzipkin/zipkin-go
   version: f197ec29e729f226d23370ea60f0e49b8f44ccf4
 - name: github.com/pkg/errors
