@@ -22,6 +22,7 @@ surls 使用golang编写,实现短域名服务。
 - [x] benchmark
 - [x] yaml配置文件支持
 - [x] env配置文件支持
+- [ ] 增加sleep接口用于观察graceful效果
 - [ ] zipkin全链路追踪
 
 ## 环境依赖 (go1.10.2)
