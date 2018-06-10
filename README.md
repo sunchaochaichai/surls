@@ -145,7 +145,7 @@ $ go test -v -cover=true ./...
 --- PASS: TestSurlsGet (0.00s)
 PASS
 coverage: 90.0% of statements
-ok  	surls/svc/surlssvc/transports	(cached)	coverage: 90.0% of statements
+ok  	surls/svc/surlssvc/transports	0.006s	coverage: 90.0% of statements
 
 ```
 
@@ -157,10 +157,10 @@ $ go test -v -bench=. -benchtime=2s -benchmem -run=none
 goos: darwin
 goarch: amd64
 pkg: surls/tests
-BenchmarkSurlsGet-4   	 200000             18526 ns/op            2306 B/op         41 allocs/op
-BenchmarkSurlsSet-4   	  50000             52606 ns/op            3387 B/op         62 allocs/op
+BenchmarkSurlsSet-16    	   30000	     89480 ns/op	    3922 B/op	      77 allocs/op
+BenchmarkSurlsGet-16    	  100000	     49373 ns/op	    2769 B/op	      52 allocs/op
 PASS
-ok      surls/tests     7.094s
+ok  	surls/svc/surlssvc/transports	8.987s
 ```
 
 ## Docker Build
