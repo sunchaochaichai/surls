@@ -60,22 +60,33 @@ $ go get -u -v github.com/google/pprof
 ├── clients //grpc客户端
 |   ├── get //get服务客户端
 |   └── set //set服务客户端
-├── conf //配置文件保存目录
+├── conf //多环境配置文件保存目录
+|   ├── container.yaml //容器模式下配置文件
+|   └── local.yaml //本地开发模式下配置文件
 ├── docker //docker镜像构建相关
 ├── global //全局生效 变量&配置
+|   ├── conf.go //实例化配置文件
+|   ├── errors.go //错误信息配置
+|   ├── global.go //全局变量&配置 入口
+|   ├── logger.go //日志实例
+|   └── redis.go //redis实例
 ├── lib //公共库目录
 ├── utils //工具目录
 ├── pb //protobuf 相关文件保存目录
+|   ├── compile.sh //protobuf 文件编译脚本
+|   ├── surls.pb.go //protobuf原始文件生成的go文件
+|   ├── surls.pb.gw.go //protobuf原始文件生成的 grpc转http 网关文件
+|   └── surls.proto //服务定义文件
 ├── servers //服务启动相关
-├── svc //服务业务逻辑相关目录
-|   └── surlssvc //string服务业务逻辑
-|       ├── endpoints //surls endpoints
-|       ├── interfaces //定义服务部分
-|       ├── transports //surls transport
-|       ├── middlewares //surls middleware
-|       |   ├── mw_endpoint //surls endpoint类型中间件
-|       |   └── mw_svc //surls svc类型中间件
-|       └── svc.go //实现定义的服务
+|   ├── debug.go //debug服务
+|   ├── grpc.go //grpc服务
+|   ├── http.go //http服务
+|   └── metrics.go //数据采集服务
+├── handlers //业务逻辑相关目录
+|   └── surls //string服务业务逻辑
+|       ├── endpoints //go-kit endpoints实现
+|       ├── svc //go-kit 服务定义&实现
+|       └── transports //go-kit transport实现
 ├── runtime //保存程序运行时数据
 |   ├── pid //服务pid
 |   ├── logs //日志保存目录
@@ -138,7 +149,7 @@ $ gox -verbose
 ```bash
 $ cd $GOPATH/src/surls
 $ go test -v -cover=true ./...
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 === RUN   TestSurlsSet
 --- PASS: TestSurlsSet (0.00s)
 === RUN   TestSurlsGet
@@ -150,10 +161,106 @@ ok  	surls/handlers/surls/transports	0.006s	coverage: 90.0% of statements
 ```
 
 ## Benchmark
+
+```bash
+$ hey -m POST -c 1000 -n 100000 -d '{"url":"http://www.baidu.com"}' http://localhost:7071/surls/v1/set
+-----------------------------------------------------------------------------------------------
+Summary:
+  Total:	3.2813 secs
+  Slowest:	0.1637 secs
+  Fastest:	0.0006 secs
+  Average:	0.0323 secs
+  Requests/sec:	30475.4100
+
+  Total data:	4196775 bytes
+  Size/request:	41 bytes
+
+Response time histogram:
+  0.001 [1]	|
+  0.017 [968]	|∎
+  0.033 [67971]	|∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.049 [28395]	|∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.066 [1464]	|∎
+  0.082 [244]	|
+  0.098 [59]	|
+  0.115 [11]	|
+  0.131 [51]	|
+  0.147 [450]	|
+  0.164 [386]	|
+
+
+Latency distribution:
+  10% in 0.0239 secs
+  25% in 0.0271 secs
+  50% in 0.0305 secs
+  75% in 0.0343 secs
+  90% in 0.0400 secs
+  95% in 0.0449 secs
+  99% in 0.0801 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0001 secs, 0.0006 secs, 0.1637 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0151 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0172 secs
+  resp wait:	0.0314 secs, 0.0005 secs, 0.1306 secs
+  resp read:	0.0005 secs, 0.0000 secs, 0.0215 secs
+
+Status code distribution:
+  [200]	100000 responses
+  
+```
+
+```bash
+$ hey -c 1000 -n 100000 'http://localhost:7071/surls/v1/get?url=bfa89e563d9509fbc5c6503dd50faf2e'
+-----------------------------------------------------------------------------------------------
+Summary:
+  Total:	5.0311 secs
+  Slowest:	0.1544 secs
+  Fastest:	0.0005 secs
+  Average:	0.0494 secs
+  Requests/sec:	19876.3453
+
+  Total data:	5800000 bytes
+  Size/request:	58 bytes
+
+Response time histogram:
+  0.000 [1]	|
+  0.016 [4618]	|∎∎∎∎∎
+  0.031 [8613]	|∎∎∎∎∎∎∎∎∎
+  0.047 [27651]	|∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.062 [38082]	|∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.077 [16573]	|∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.093 [3012]	|∎∎∎
+  0.108 [996]	|∎
+  0.124 [434]	|
+  0.139 [19]	|
+  0.154 [1]	|
+
+
+Latency distribution:
+  10% in 0.0277 secs
+  25% in 0.0392 secs
+  50% in 0.0502 secs
+  75% in 0.0599 secs
+  90% in 0.0691 secs
+  95% in 0.0760 secs
+  99% in 0.0996 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0002 secs, 0.0005 secs, 0.1544 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0111 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0199 secs
+  resp wait:	0.0486 secs, 0.0004 secs, 0.1544 secs
+  resp read:	0.0003 secs, 0.0000 secs, 0.0312 secs
+
+Status code distribution:
+  [200]	100000 responses
+```
+
 ```bash
 $ cd $GOPATH/src/surls
 $ go test -v -bench=. -benchtime=2s -benchmem -run=none
-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 goos: darwin
 goarch: amd64
 pkg: surls/tests
