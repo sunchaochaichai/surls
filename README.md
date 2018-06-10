@@ -65,7 +65,10 @@ $ go get -u -v github.com/google/pprof
 ├── conf //多环境配置文件保存目录
 |   ├── container.yaml //容器模式下配置文件
 |   └── local.yaml //本地开发模式下配置文件
-├── docker //docker镜像构建相关
+├── docker //docker相关
+|   ├── docker-compose.yaml //服务集成环境启动 docker-compose 配置文件
+|   ├── image_build //服务构建独立docker镜像相关文件
+|   └── ... //其他docker服务相关配置文件
 ├── global //全局生效 变量&配置
 |   ├── conf.go //实例化配置文件
 |   ├── errors.go //错误信息配置
