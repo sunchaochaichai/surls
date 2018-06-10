@@ -1,4 +1,4 @@
-package resp_errors
+package global
 
 type E struct {
 	Code int32
@@ -12,3 +12,4 @@ var (
 
 	ERROR_PARAMS_ERROR = E{412,"params error"}
 )
+

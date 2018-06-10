@@ -5,7 +5,7 @@ import (
 	"github.com/afex/hystrix-go/hystrix"
 	"context"
 	"surls/pb"
-	"surls/lib/resp_errors"
+	"surls/global"
 )
 
 func Hystrix(commandName string) endpoint.Middleware {
@@ -19,8 +19,8 @@ func Hystrix(commandName string) endpoint.Middleware {
 
 			if err != nil {
 				return pb.GetResp{
-					Code: resp_errors.ERROR_TOO_MANY_CONNECTIONS.Code,
-					Msg:  resp_errors.ERROR_TOO_MANY_CONNECTIONS.Msg,
+					Code: global.ERROR_TOO_MANY_CONNECTIONS.Code,
+					Msg:  global.ERROR_TOO_MANY_CONNECTIONS.Msg,
 				}, nil
 			}
 
@@ -28,4 +28,3 @@ func Hystrix(commandName string) endpoint.Middleware {
 		}
 	}
 }
-
