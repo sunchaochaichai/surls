@@ -1,8 +1,9 @@
 # SURLS (For Demo)
 
-surls 使用golang编写,实现短域名服务。  
-项目基于[go-kit](https://github.com/go-kit/kit)搭建,并集成常用组件。  
-`PS:转换方式直接使用md5,仅供演示使用.`
+SURLS 使用golang编写,实现短域名服务。  
+项目基于[go-kit](https://github.com/go-kit/kit)搭建,并集成常用组件.  
+
+###### *PS:转换方式直接使用md5,仅供演示使用.*
 ---
 
 - [x] 依赖库管理 [glide](https://github.com/Masterminds/glide)
