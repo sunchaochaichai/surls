@@ -21,8 +21,8 @@ SURLS 使用golang编写,实现短域名服务。
 - [x] 服务优雅退出 graceful
 - [x] tests
 - [x] benchmark
-- [x] yaml配置文件支持
-- [x] env配置文件支持
+- [x] [yaml](https://github.com/go-yaml/yaml)配置文件支持
+- [x] [env](https://github.com/joho/godotenv)配置文件支持
 - [ ] 增加sleep接口用于观察graceful效果
 - [ ] zipkin全链路追踪
 
