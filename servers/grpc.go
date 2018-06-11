@@ -9,9 +9,9 @@ import (
 	"os/signal"
 	"syscall"
 	"surls/pb"
-	"surls/handlers/surls/transports"
-	"surls/handlers/surls/endpoints"
-	"surls/handlers/surls/svc"
+	"surls/handlers/transports"
+	"surls/handlers/endpoints"
+	"surls/handlers/svc"
 	"surls/global"
 	"log"
 )

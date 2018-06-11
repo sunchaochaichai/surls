@@ -88,10 +88,9 @@ $ go get -u -v github.com/google/pprof
 |   ├── http.go //http服务
 |   └── metrics.go //数据采集服务
 ├── handlers //业务逻辑相关目录
-|   └── surls //string服务业务逻辑
-|       ├── endpoints //go-kit endpoints实现
-|       ├── svc //go-kit 服务定义&实现
-|       └── transports //go-kit transport实现
+|   ├── endpoints //go-kit endpoints实现
+|   ├── svc //go-kit 服务定义&实现
+|   └── transports //go-kit transport实现
 ├── runtime //保存程序运行时数据
 |   ├── pid //服务pid
 |   ├── logs //日志保存目录
@@ -161,7 +160,7 @@ $ go test -v -cover=true ./...
 --- PASS: TestSurlsGet (0.00s)
 PASS
 coverage: 90.0% of statements
-ok  	surls/handlers/surls/transports	0.006s	coverage: 90.0% of statements
+ok  	surls/handlers/transports	0.006s	coverage: 90.0% of statements
 
 ```
 
@@ -272,7 +271,7 @@ pkg: surls/tests
 BenchmarkSurlsSet-16    	   30000	     89480 ns/op	    3922 B/op	      77 allocs/op
 BenchmarkSurlsGet-16    	  100000	     49373 ns/op	    2769 B/op	      52 allocs/op
 PASS
-ok  	surls/handlers/surls/transports	8.987s
+ok  	surls/handlers/transports	8.987s
 ```
 
 ## Docker Build
