@@ -92,7 +92,7 @@ $ go get -u -v github.com/google/pprof
 |   ├── svc //go-kit 服务定义&实现
 |   └── transports //go-kit transport实现
 ├── runtime //保存程序运行时数据
-|   ├── pid //服务pid
+|   ├── pid //服务运行pid
 |   ├── logs //日志保存目录
 |   └── ... //其他运行时数据
 ├── vendor //依赖库保存目录
